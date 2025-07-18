@@ -5,14 +5,20 @@ import { Label } from '@/components/ui/label';
 import { Eye, EyeOff } from 'lucide-react';
 import NetworkBackground from './NetworkBackground';
 
-const LoginPage = () => {
+interface LoginPageProps {
+  onLogin: () => void;
+}
+
+const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Login attempt:', { email, password });
+    // Simulate successful login
+    onLogin();
   };
 
   return (
@@ -98,15 +104,7 @@ const LoginPage = () => {
                   Login now
                 </Button>
 
-                {/* Sign Up Link */}
-                <div className="text-center pt-4">
-                  <span className="text-gray-400 text-sm">
-                    Don't Have An Account?{' '}
-                    <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors">
-                      Sign Up
-                    </a>
-                  </span>
-                </div>
+
               </form>
             </div>
           </div>
