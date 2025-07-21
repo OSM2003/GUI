@@ -25,14 +25,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-900 relative overflow-hidden">
       {/* Network Background Animation */}
       <NetworkBackground />
-      
-      {/* Sign In Link */}
-      <div className="absolute top-6 right-6 z-20">
-        <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-          Sign In
-        </a>
-      </div>
-
+    
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-6">
         <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-center">
