@@ -6,7 +6,7 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
   return (
-    <div className={`flex-1 p-8 overflow-y-auto transition-all duration-300 ease-in-out ${
+    <div className={`flex-1 custom-scrollbar p-8 overflow-y-auto transition-all duration-300 ease-in-out ${
       isSidebarHovered ? 'blur-sm' : ''
     }`}>
       {/* Header */}
@@ -14,7 +14,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
         <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-light text-white">Dashboard</h1>
-            <span className="text-blue-400 font-medium">OPNsense</span>
+            <button className=" Fixed text-blue-400 font-medium">OPNsense</button>
           </div>
         </div>
       </div>
