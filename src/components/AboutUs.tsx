@@ -17,7 +17,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ isSidebarHovered }) => {
       email: 'ananzehosamah99@gmail.com',
       phone: '+962795224589',
       linkedin: 'https://www.linkedin.com/in/osamah-alananzeh-992078221?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-      image: 'src/assets/osamah.jpeg',
+      image: 'src/assets/Osamah.jpeg',
       initials: 'OA',
       gradientColors: 'bg-gradient-to-br from-blue-500 to-purple-600'
     },
@@ -38,13 +38,13 @@ const AboutUs: React.FC<AboutUsProps> = ({ isSidebarHovered }) => {
       id: '3',
       firstName: 'Aktham',
       lastName: 'Alarabi',
-      fullName: 'Aktham Khaleel Alarabi',
+      fullName: 'Aktham Khaleel Shehadeh Alarabi',
       position: 'Network Security Engineering',
       email: 'aktham.alarabi@gmail.com',
       phone: '+962798859514',
       linkedin: 'https://www.linkedin.com/in/aktham-alarabi-0819b8346?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       initials: 'AA',
-      image: 'src/assets/Aktham.jpeg',
+      image: 'src/assets/Akhtam.webp',
       gradientColors: 'bg-gradient-to-br from-purple-500 to-pink-600'
     },
     {
