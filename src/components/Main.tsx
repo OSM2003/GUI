@@ -40,7 +40,7 @@ const Main: React.FC<MainProps> = ({ onLogout }) => {
                 className="w-12 h-12 transition-all duration-300 ease-in-out" 
               />
               {isSidebarHovered && (
-                <span className="ml-3 text-white font-semibold text-lg opacity-0 animate-fade-in">
+                <span className="ml-3 text-white font-SF Pro Rounded text-lg opacity-0 animate-fade-in">
                   Warden
                 </span>
               )}
@@ -218,9 +218,10 @@ const Main: React.FC<MainProps> = ({ onLogout }) => {
       ) : (
         <main className={`flex-1 p-8 overflow-y-auto custom-scrollbar flex flex-col transition-all duration-300 ease-in-out ${isSidebarHovered ? 'blur-sm' : ''}`}>
           <header className="mb-8">
-            <h1 className="text-3xl font-light text-white">Chatbot-Guided Firewall Operations</h1>
+            <h1 className="text-3xl font-light text-white text-center">
+              Chatbot-Guided Firewall Operations
+            </h1>
           </header>
-
           <section className="grid grid-cols-2 lg:grid-cols-2 gap-8 flex-1">
             <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 flex flex-col items-center justify-center h-full min-h-[500px]">
               <h2 className="text-2xl font-bold mb-8 text-white">Warden Chatbot</h2>
@@ -252,7 +253,7 @@ const Main: React.FC<MainProps> = ({ onLogout }) => {
             <div className="flex flex-col gap-6 h-full min-h-[400px]">
               <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
                 <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-lg font-semibold text-white">Welcome Back</h2>
+                  <h2 className="text-lg font-SF Pro Rounded text-white">Welcome Back</h2>
                   <img src="src/assets/cr.png" alt="Warden Logo" className="w-10 h-10 rounded-full border border-blue-500" style={{ boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)" }} />
                 </div>
                 <p className="text-gray-300 text-2xl mb-2 ml-10">Osamah Alananzeh</p>
@@ -270,15 +271,15 @@ const Main: React.FC<MainProps> = ({ onLogout }) => {
                   </div>
                 </div>
                 <div className="grid grid-cols-4 gap-4 text-center text-sm">
-                  <div><div className="text-white font-semibold">32,984</div><div className="text-gray-400">Users</div></div>
-                  <div><div className="text-white font-semibold">2.42m</div><div className="text-gray-400">Clicks</div></div>
-                  <div><div className="text-white font-semibold">2,400$</div><div className="text-gray-400">Sales</div></div>
-                  <div><div className="text-white font-semibold">320</div><div className="text-gray-400">Items</div></div>
+                  <div><div className="text-white font-SF Pro Rounded">32,984</div><div className="text-gray-400">Users</div></div>
+                  <div><div className="text-white font-SF Pro Rounded">2.42m</div><div className="text-gray-400">Clicks</div></div>
+                  <div><div className="text-white font-SF Pro Rounded">2,400$</div><div className="text-gray-400">Sales</div></div>
+                  <div><div className="text-white font-SF Pro Rounded">320</div><div className="text-gray-400">Items</div></div>
                 </div>
               </div>
 
               <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-                <h2 className="text-lg font-semibold text-white mb-4">Current Threats Blocked</h2>
+                <h2 className="text-lg font-SF Pro Rounded text-white mb-4">Current Threats Blocked</h2>
                 <div className="bg-blue-900/30 rounded-lg p-4 h-32 relative overflow-hidden">
                   <svg className="w-full h-full" viewBox="0 0 400 100">
                     <path d="M0,50 Q100,20 200,50 T400,50 L400,100 L0,100 Z" fill="url(#gradient1)" className="opacity-80" />

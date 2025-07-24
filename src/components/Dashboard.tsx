@@ -1,21 +1,106 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 interface DashboardProps {
   isSidebarHovered: boolean;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
+  const [scrollY, setScrollY] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Use useCallback to prevent unnecessary re-renders
+  const handleScroll = useCallback(() => {
+    if (containerRef.current) {
+      const scrollTop = containerRef.current.scrollTop;
+      setScrollY(scrollTop);
+    }
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      // Add multiple event listeners to ensure all scroll types are captured
+      container.addEventListener('scroll', handleScroll, { passive: true });
+      container.addEventListener('wheel', handleScroll, { passive: true });
+      container.addEventListener('touchmove', handleScroll, { passive: true });
+      
+      // Also listen for scrollbar interactions
+      container.addEventListener('mousedown', () => {
+        const checkScroll = () => {
+          handleScroll();
+          requestAnimationFrame(checkScroll);
+        };
+        checkScroll();
+      });
+
+      return () => {
+        container.removeEventListener('scroll', handleScroll);
+        container.removeEventListener('wheel', handleScroll);
+        container.removeEventListener('touchmove', handleScroll);
+      };
+    }
+  }, [handleScroll]);
+
+  // Alternative approach: Use Intersection Observer for more reliable scroll detection
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // This will trigger when elements come in/out of view during scroll
+        handleScroll();
+      },
+      {
+        root: container,
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+      }
+    );
+
+    // Observe a few elements to detect scroll
+    const elements = container.querySelectorAll('div');
+    elements.forEach((el, index) => {
+      if (index < 5) observer.observe(el); // Observe first 5 divs
+    });
+
+    return () => observer.disconnect();
+  }, [handleScroll]);
+
+  // Calculate opacity based on scroll position
+  const opnsenseOpacity = Math.max(0.3, 1 - scrollY / 300);
+  const opnsenseTransform = `translateY(${scrollY * 0.5}px)`;
+
   return (
-    <div className={`flex-1 custom-scrollbar p-8 overflow-y-auto transition-all duration-300 ease-in-out ${
-      isSidebarHovered ? 'blur-sm' : ''
-    }`}>
+    <div 
+      ref={containerRef}
+      className={`custom-scrollbar flex-1 p-8 overflow-y-auto transition-all duration-300 ease-in-out ${
+        isSidebarHovered ? 'blur-sm' : ''
+      }`}
+      style={{
+        // Ensure smooth scrolling behavior
+        scrollBehavior: 'smooth',
+        // Force hardware acceleration
+        transform: 'translateZ(0)',
+        willChange: 'scroll-position'
+      }}
+    >
       {/* Header */}
       <div className="mb-8">
-        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-light text-white">Dashboard</h1>
-            <button className=" Fixed text-blue-400 font-medium">OPNsense</button>
+        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 relative overflow-hidden">
+          <div className="flex justify-center items-center relative">
+            <h1 className="text-3xl font-light text-white text-center">Firewall Dashboard</h1>
+            <span 
+              className="absolute right-0 text-blue-400 font-medium transition-all duration-100 ease-out"
+              style={{
+                opacity: opnsenseOpacity,
+                transform: opnsenseTransform,
+                willChange: 'transform, opacity'
+              }}
+            >
+              OPNsense
+            </span>
           </div>
+
         </div>
       </div>
 
@@ -23,7 +108,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
       <div className="space-y-8">
         {/* Live Log Section */}
         <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-          <h2 className="text-xl font-semibold text-white mb-4">Live Log</h2>
+          <h2 className="text-xl font-SF Pro Rounded text-white mb-4">Live Log</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -50,7 +135,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
 
         {/* Traffic Graph Section */}
         <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-          <h2 className="text-xl font-semibold text-white mb-4">Traffic Graph</h2>
+          <h2 className="text-xl font-SF Pro Rounded text-white mb-4">Traffic Graph</h2>
           <div className="space-y-4">
             <div>
               <div className="flex justify-between items-center mb-2">
@@ -93,7 +178,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* System Health */}
           <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">System Health</h2>
+            <h2 className="text-xl font-SF Pro Rounded text-white mb-6">System Health</h2>
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between items-center mb-2">
@@ -116,7 +201,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-gray-300 text-sm">CPU</span>
-                  <span className="text-gray-400 text-sm">60%</span>
+                  <span className="text-gray-400 text-span">60%</span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-2">
                   <div className="bg-yellow-500 h-2 rounded-full w-3/5 transition-all duration-1000 ease-out"></div>
@@ -127,7 +212,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
 
           {/* Top Sources */}
           <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Top Sources</h2>
+            <h2 className="text-xl font-SF Pro Rounded text-white mb-6">Top Sources</h2>
             <div className="grid grid-cols-2 gap-6">
               {/* Top Sources by Packet Count */}
               <div className="text-center">
@@ -139,7 +224,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
                   </div>
                 </div>
                 <div className="bg-gray-900/50 rounded-lg p-3">
-                  <p className="text-blue-400 text-xs font-medium">ALERT</p>
+                  <p className="text-blue-400 text-xs font-medium"></p>
                   <p className="text-gray-300 text-xs">Possible Attack Attempt</p>
                 </div>
               </div>
@@ -154,7 +239,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
                   </div>
                 </div>
                 <div className="bg-gray-900/50 rounded-lg p-3">
-                  <p className="text-green-400 text-xs font-medium">ALERT</p>
+                  <p className="text-green-400 text-xs font-medium"></p>
                   <p className="text-gray-300 text-xs">Possible Worm Source</p>
                 </div>
               </div>
@@ -166,22 +251,22 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
       {/* Top Sources Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50">
-          <h3 className="text-white text-lg font-semibold mb-4">Top Sources by Packet Count</h3>
+          <h3 className="text-white text-lg font-SF Pro Rounded mb-4">Top Sources by Packet Count</h3>
           <div className="flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-gray-700 flex items-center justify-center mb-4">
               <div className="w-16 h-16 rounded-full bg-gray-600 flex items-center justify-center">
-                <span className="text-white text-xs">Alert</span>
+                <span className="text-white text-xs"></span>
               </div>
             </div>
             <div className="text-center">
-              <div className="text-red-400 text-sm font-semibold mb-1">ALERT</div>
+              <div className="text-red-400 text-sm font-SF Pro Rounded mb-1"></div>
               <div className="text-gray-300 text-xs">Possible Attack Attempt</div>
             </div>
           </div>
         </div>
 
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50">
-          <h3 className="text-white text-lg font-semibold mb-4">Top Sources by Packet Count</h3>
+          <h3 className="text-white text-lg font-SF Pro Rounded mb-4">Top Sources by Packet Count</h3>
           <div className="flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-gray-700 flex items-center justify-center mb-4">
               <div className="w-16 h-16 rounded-full bg-gray-600 flex items-center justify-center">
@@ -189,14 +274,14 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-red-400 text-sm font-semibold mb-1">ALERT</div>
+              <div className="text-red-400 text-sm font-SF Pro Rounded mb-1">ALERT</div>
               <div className="text-gray-300 text-xs">Possible Weak Source</div>
             </div>
           </div>
         </div>
 
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50">
-          <h3 className="text-white text-lg font-semibold mb-4">Top Sources by Packet Count</h3>
+          <h3 className="text-white text-lg font-SF Pro Rounded mb-4">Top Sources by Packet Count</h3>
           <div className="flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-gray-700 flex items-center justify-center mb-4">
               <div className="w-16 h-16 rounded-full bg-gray-600 flex items-center justify-center">
@@ -204,12 +289,13 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-red-400 text-sm font-semibold mb-1">ALERT</div>
+              <div className="text-red-400 text-sm font-SF Pro Rounded mb-1">ALERT</div>
               <div className="text-gray-300 text-xs">Possible Attack Attempt</div>
             </div>
           </div>
         </div>
       </div>
+
 
       <style jsx>{`
         @keyframes slideInUp {
@@ -232,4 +318,3 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
 };
 
 export default Dashboard;
-

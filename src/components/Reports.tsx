@@ -10,14 +10,13 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
 
   return (
     <main
-      className={`flex-1 custom-scrollbar p-8 overflow-y-auto flex flex-col transition-all duration-300 ease-in-out ${
+      className={` custom-scrollbar flex-1 p-8 overflow-y-auto flex flex-col transition-all duration-300 ease-in-out ${
         isSidebarHovered ? 'blur-sm' : ''
       }`}
     >
       {/* Header */}
       <header className="mb-8 animate-slide-in-up">
-        <h1 className="text-3xl font-light text-white">Reports & Documentation</h1>
-        <p className="text-gray-400 mt-2">Generate presentations and documentation for your firewall operations</p>
+        <h1 className="text-3xl font-light text-white text-center">Reports & Documentation</h1>
       </header>
 
       {/* Main Content Grid */}
@@ -40,44 +39,13 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
           </div>
 
           <h2 className="text-2xl font-bold mb-4 text-white text-center">PowerPoint Presentations</h2>
-          <p className="text-gray-300 text-center mb-6">
-            Create professional presentations for security reports, incident analysis, and system overviews
-          </p>
 
-          {selectedSection === 'powerpoint' && (
-            <div className="space-y-4 animate-slide-in-up">
-              <div className="grid grid-cols-1 gap-3">
-                <Button 
-                  className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-medium py-3 rounded-lg transition-all duration-300"
-                >
-                  Security Incident Report
-                </Button>
-                <Button 
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 rounded-lg transition-all duration-300"
-                >
-                  Monthly Security Overview
-                </Button>
-                <Button 
-                  className="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-medium py-3 rounded-lg transition-all duration-300"
-                >
-                  Firewall Configuration Summary
-                </Button>
-                <Button 
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-3 rounded-lg transition-all duration-300"
-                >
-                  Threat Analysis Presentation
-                </Button>
-              </div>
+          {selectedSection === 'powerpoint' ? (
+            <div className="text-center text-gray-400">
             </div>
-          )}
-
-          {!selectedSection && (
+          ) : (
             <div className="flex-1 flex items-end justify-center">
-              <Button 
-                className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300"
-              >
-                Explore Templates
-              </Button>
+
             </div>
           )}
         </div>
@@ -105,82 +73,22 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
 
           <h2 className="text-2xl font-bold mb-4 text-white text-center">Documentation</h2>
           <p className="text-gray-300 text-center mb-6">
-            Generate comprehensive documentation for policies, procedures, and technical specifications
+         
           </p>
 
-          {selectedSection === 'documentation' && (
+          {selectedSection === 'documentation' ? (
             <div className="space-y-4 animate-slide-in-up">
               <div className="grid grid-cols-1 gap-3">
-                <Button 
-                  className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-medium py-3 rounded-lg transition-all duration-300"
-                >
-                  Security Policy Document
-                </Button>
-                <Button 
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium py-3 rounded-lg transition-all duration-300"
-                >
-                  Incident Response Procedures
-                </Button>
-                <Button 
-                  className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium py-3 rounded-lg transition-all duration-300"
-                >
-                  Technical Configuration Guide
-                </Button>
-                <Button 
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-3 rounded-lg transition-all duration-300"
-                >
-                  Compliance Report
-                </Button>
+
               </div>
             </div>
-          )}
-
-          {!selectedSection && (
+          ) : (
             <div className="flex-1 flex items-end justify-center">
-              <Button 
-                className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300"
-              >
-                Browse Templates
-              </Button>
             </div>
           )}
         </div>
       </section>
-
-      {/* Recent Reports Section */}
-      <section className="mt-8 animate-slide-in-up" style={{ animationDelay: '0.3s' }}>
-        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-          <h3 className="text-xl font-semibold text-white mb-4">Recent Reports</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gray-700/50 rounded-lg p-4 hover:bg-gray-700/70 transition-colors cursor-pointer">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-400">Security Report</span>
-                <span className="text-xs text-green-400">Completed</span>
-              </div>
-              <h4 className="text-white font-medium">Weekly Security Analysis</h4>
-              <p className="text-gray-400 text-sm mt-1">Generated 2 hours ago</p>
-            </div>
-            <div className="bg-gray-700/50 rounded-lg p-4 hover:bg-gray-700/70 transition-colors cursor-pointer">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-400">Documentation</span>
-                <span className="text-xs text-yellow-400">In Progress</span>
-              </div>
-              <h4 className="text-white font-medium">Firewall Policy Update</h4>
-              <p className="text-gray-400 text-sm mt-1">Started 1 day ago</p>
-            </div>
-            <div className="bg-gray-700/50 rounded-lg p-4 hover:bg-gray-700/70 transition-colors cursor-pointer">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-400">Presentation</span>
-                <span className="text-xs text-blue-400">Scheduled</span>
-              </div>
-              <h4 className="text-white font-medium">Monthly Board Review</h4>
-              <p className="text-gray-400 text-sm mt-1">Due in 3 days</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Custom CSS for slide-in animation */}
+      {/* Animation CSS */}
       <style jsx>{`
         @keyframes slideInUp {
           from {
@@ -202,4 +110,3 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
 };
 
 export default Reports;
-

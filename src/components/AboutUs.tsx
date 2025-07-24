@@ -36,50 +36,53 @@ const AboutUs: React.FC<AboutUsProps> = ({ isSidebarHovered }) => {
     },
     {
       id: '3',
-      firstName: 'John',
-      lastName: 'Doe',
-      fullName: 'John Doe',
-      position: 'Chief Executive Officer',
-      email: 'john.doe@company.com',
-      phone: '+1234567890',
-      linkedin: 'https://linkedin.com/in/johndoe',
-      initials: 'JD',
+      firstName: 'Aktham',
+      lastName: 'Alarabi',
+      fullName: 'Aktham Khaleel Alarabi',
+      position: 'Network Security Engineering',
+      email: 'aktham.alarabi@gmail.com',
+      phone: '+962798859514',
+      linkedin: 'https://www.linkedin.com/in/aktham-alarabi-0819b8346?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      initials: 'AA',
+      image: 'src/assets/Aktham.jpeg',
       gradientColors: 'bg-gradient-to-br from-purple-500 to-pink-600'
     },
     {
       id: '4',
-      firstName: 'Jane',
-      lastName: 'Smith',
-      fullName: 'Jane Smith',
-      position: 'Chief Technology Officer',
-      email: 'jane.smith@company.com',
-      phone: '+1234567891',
-      linkedin: 'https://linkedin.com/in/janesmith',
-      initials: 'JS',
+      firstName: 'Almothana',
+      lastName: 'Altawil',
+      fullName: 'Almothana Khalid Mohammed Altawil',
+      position: 'Computer Engineering',
+      email: 'almothanaaltaweel@gmail.com',
+      phone: '+962790012252',
+      image: 'src/assets/Almothana.jpeg',
+      initials: 'KA',
+      linkedin: 'https://www.linkedin.com/in/almothana-altaweel-1b283316b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
       gradientColors: 'bg-gradient-to-br from-green-500 to-blue-600'
     },
     {
       id: '5',
-      firstName: 'Mike',
-      lastName: 'Johnson',
-      fullName: 'Mike Johnson',
-      position: 'Chief Security Officer',
-      email: 'mike.johnson@company.com',
-      phone: '+1234567892',
-      linkedin: 'https://linkedin.com/in/mikejohnson',
-      initials: 'MJ',
+      firstName: 'Alaa',
+      lastName: 'Alnajjar',
+      fullName: 'Alaa Nawaf Hasan Alnajjar',
+      position: 'Computer Engineering',
+      email: 'Alaa_najjar2004@hotmail.com',
+      phone: '+962799065467',
+      linkedin: 'https://www.linkedin.com/in/alaa-alnajjar-22b78b364?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+      initials: 'AN',
+      image: 'src/assets/Alaa.jpg',
       gradientColors: 'bg-gradient-to-br from-orange-500 to-red-600'
     },
     {
       id: '6',
-      firstName: 'Mike',
-      lastName: 'Johnson',
-      fullName: 'Mike Johnson',
-      position: 'Chief Security Officer',
-      email: 'mike.johnson@company.com',
-      phone: '+1234567892',
-      linkedin: 'https://linkedin.com/in/mikejohnson',
-      initials: 'MJ',
+      firstName: 'Ashraf',
+      lastName: 'Alsharah',
+      fullName: 'Ashraf Alsharah',
+      position: 'Assistant Professor',
+      email: 'aalsharah@bau.edu.jo',
+      linkedin: 'https://www.linkedin.com/in/ashraf-al-sharah-ph-d-513b82115?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      initials: 'AA',
+      image: 'src/assets/Ashraf.jpeg',
       gradientColors: 'bg-gradient-to-br from-orange-500 to-red-600'
     }
   ];
@@ -90,18 +93,18 @@ const AboutUs: React.FC<AboutUsProps> = ({ isSidebarHovered }) => {
     }`}>
 
       {/* Team Section Title */}
-      <h1 className="text-xl font-semibold text-white mb-8 text-center">Final Project Team</h1>
+      <h1 className="text-xl font-SF Pro Rounded text-white mb-8 text-center">Final Project Team</h1>
 
       {/* Row 1: Single card centered */}
       <div className="flex justify-center mb-8">
         <div className="w-full max-w-sm">
-          <h2 className="text-lg font-semibold text-white mb-4 text-center">Supervisor</h2>
-          <FlipCard member={teamMembers[4]} />
+          <h2 className="text-lg font-SF Pro Rounded text-white mb-4 text-center">Supervisor</h2>
+          <FlipCard member={teamMembers[5]} />
         </div>
       </div>
 
       {/* Row 2: Three cards */}
-      <h2 className="text-lg font-semibold text-white mb-4 text-center">The Team</h2>
+      <h2 className="text-lg font-SF Pro Rounded text-white mb-4 text-center">The Team</h2>
       <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-8">
         <FlipCard member={teamMembers[0]} />
         <FlipCard member={teamMembers[1]} />
@@ -111,7 +114,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ isSidebarHovered }) => {
       {/* Row 3: Two cards centered */}
       <div className="grid grid-cols-2 md:grid-cols-2 gap-6 justify-items-center max-w-4xl mx-auto">
         <FlipCard member={teamMembers[3]} />
-        <FlipCard member={teamMembers[5]} />
+        <FlipCard member={teamMembers[4]} />
       </div>
 
     {/* Responsive Design for Mobile */}

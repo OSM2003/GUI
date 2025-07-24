@@ -82,7 +82,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isSidebarHovered }) => {
       >
         <div className="bg-[#012A39]/75 backdrop-blur-md rounded-xl border border-[#61C3CB75] text-white p-4 w-full h-full flex flex-col">
           <div className="flex justify-between items-center border-b border-white/20 pb-2 mb-4">
-            <h2 className="text-sm font-semibold text-white">Latest Configuration Changes</h2>
+            <h2 className="text-sm font-SF Pro Rounded text-white">Latest Configuration Changes</h2>
 
             {/* Date Button */}
             <div className="relative">
@@ -121,7 +121,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isSidebarHovered }) => {
           </div>
 
           {/* Table Headers */}
-          <div className="grid grid-cols-2 text-xs text-white/70 font-semibold border-b border-white/10 pb-2 mb-2">
+          <div className="grid grid-cols-2 text-xs text-white/70 font-SF Pro Rounded border-b border-white/10 pb-2 mb-2">
             <div>Time</div>
             <div>Command</div>
           </div>

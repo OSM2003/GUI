@@ -43,7 +43,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           {/* Right Side - Login Form */}
           <div className="w-full max-w-md mx-auto">
             <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 shadow-2xl">
-              <h2 className="text-2xl font-semibold text-white mb-8 text-center">
+              <h2 className="text-2xl font-SF Pro Rounded text-white mb-8 text-center">
                 Login to your account
               </h2>
               
