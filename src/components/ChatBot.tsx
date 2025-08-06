@@ -15,9 +15,17 @@ const ChatBot: React.FC<ChatBotProps> = ({ isSidebarHovered }) => {
   const [isTableHovered, setIsTableHovered] = useState(false);
 
   return (
-    <div className={`relative w-full m-10 max-w-7xl mx-auto flex gap-6 transition-all duration-300 ease-in-out ${
-      isSidebarHovered ? 'blur-sm' : ''
-    }`}>
+    <div
+      className={`custom-scroll relative w-full m-10 max-w-7xl mx-auto flex gap-6 flex-1 p-8 overflow-y-auto transition-all duration-300 ease-in-out ${
+        isSidebarHovered ? 'blur-sm' : ''
+      }`}
+      style={{
+        // Ensure smooth scrolling behavior
+        scrollBehavior: 'smooth',
+        // Force hardware acceleration
+        transform: 'translateZ(0)',
+        willChange: 'scroll-position'
+      }}>
       {/* Chat Section */}
       <div className={`${isTableHovered ? 'w-[60%]' : 'w-[75%]'} relative transition-all duration-300 rounded-xl overflow-hidden`}>
         <div
@@ -39,17 +47,17 @@ const ChatBot: React.FC<ChatBotProps> = ({ isSidebarHovered }) => {
           {/* Chat Messages */}
           <div className="flex-1 overflow-y-auto space-y-4 mb-6">
             <div className="flex justify-start">
-              <div className="bg-blue-600 rounded-lg px-4 py-2 max-w-xs">
+              <div className="bg-[#012A39] rounded-lg px-4 py-2 max-w-xs">
                 Hello! I'm Warden, your AI assistant for firewall operations. How can I help you today?
               </div>
             </div>
             <div className="flex justify-end">
-              <div className="bg-gray-600 rounded-lg px-4 py-2 max-w-xs">
+              <div className="bg-[#61C3CB75] rounded-lg px-4 py-2 max-w-xs">
                 Show me the current firewall status
               </div>
             </div>
             <div className="flex justify-start">
-              <div className="bg-blue-600 rounded-lg px-4 py-2 max-w-xs">
+              <div className="bg-[#012A39] rounded-lg px-4 py-2 max-w-xs">
                 The firewall is currently active and monitoring all network traffic. Would you like me to show you the detailed status report?
               </div>
             </div>
