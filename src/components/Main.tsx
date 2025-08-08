@@ -240,9 +240,14 @@ const Main: React.FC<MainProps> = ({ onLogout }) => {
                 </div>
               </div>
 
-              <Button className="mb-4 px-10 py-3 bg-gradient-to-r from-fuchsia-600 via-purple-600 to-indigo-600 hover:brightness-110 text-white font-medium rounded-full shadow-lg transition-all duration-300">
+              {/* <Button className="mb-4 px-10 py-3 bg-gradient-to-r from-fuchsia-600 via-purple-600 to-indigo-600 hover:brightness-110 text-white font-medium rounded-full shadow-lg transition-all duration-300" */}
+               <button onClick={() => setCurrentView('chatbot')}
+                className={`mb-4 px-10 py-3 bg-gradient-to-r from-fuchsia-600 via-purple-600 to-indigo-600 hover:brightness-110 text-white font-medium rounded-full shadow-lg transition-all duration-300 group ${
+                  currentView === 'chatbot' ? 'bg-gray-700 text-white' : ''
+                }`}
+                >
                 Try Now
-              </Button>
+              </button>
 
               <p className="text-center text-gray-300 text-base max-w-sm">
                 A chatbot that turns your words into real-time system actions — instantly.

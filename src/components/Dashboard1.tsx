@@ -84,7 +84,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
       }}
     >
       {/* Header */}
-      <div className="sticky top-2 z-30 mb-8 grid grid-cols-3 gap-8">
+      <div className=" top-2 z-30 mb-8 grid grid-cols-3 gap-8">
         <div className="mb-8">
           <div className="flex justify-left items-center relative">
             {/* Left column content */}
