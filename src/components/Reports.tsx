@@ -16,15 +16,15 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
     >
       {/* Header */}
       <header className="mb-8 animate-slide-in-up">
-        <h1 className="text-3xl font-light text-white text-center">Reports & Documentation</h1>
+        <h1 className="text-3xl font-light text-white text-center">Powerpoint & Documentation</h1>
       </header>
 
       {/* Main Content Grid */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1">
         {/* PowerPoint Section */}
         <div 
-          className={`bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 flex flex-col transition-all duration-500 ease-out cursor-pointer hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 animate-slide-in-up ${
-            selectedSection === 'powerpoint' ? 'ring-2 ring-blue-500/50' : ''
+          className={`bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 flex flex-col transition-all duration-500 ease-out cursor-pointer hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20 animate-slide-in-up ${
+            selectedSection === 'powerpoint' ? 'ring-2 ring-orange-500/50' : ''
           }`}
           onClick={() => setSelectedSection(selectedSection === 'powerpoint' ? null : 'powerpoint')}
           style={{ animationDelay: '0.1s' }}
@@ -93,7 +93,7 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
         @keyframes slideInUp {
           from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(0);
           }
           to {
             opacity: 1;

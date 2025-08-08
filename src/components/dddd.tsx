@@ -68,15 +68,11 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
 
   return (
     <div className="relative w-full h-full">
-      {/* Fixed OPNsense Button - Positioned at top right and sticky */}
-      <div 
-        className="fixed top-4 right-4 z-50 transition-all duration-300"
-        style={{
-          right: isSidebarHovered ? '24px' : '24px',
-        }}
-      >
+      {/* Header Row with Title and OPNsense Button */}
+      <div className="flex items-center mt-8 mb-8 justify-between px-8">
+        <h1 className="text-3xl font-light text-white text-center">Firewall Dashboard</h1>
         <button
-          className="px-6 py-2.5 font-semibold text-sm text-white bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-lg border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:from-purple-500 hover:to-pink-500 ring-1 ring-white/10"
+          className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl px-6 py-2.5 font-semibold text-sm text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
           style={{
             backdropFilter: 'blur(10px)',
           }}
@@ -92,24 +88,12 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
           isSidebarHovered ? 'blur-sm' : ''
         }`}
         style={{
-          // Ensure smooth scrolling behavior
           scrollBehavior: 'smooth',
-          // Force hardware acceleration
           transform: 'translateZ(0)',
           willChange: 'scroll-position',
           height: '100vh',
-          paddingTop: '80px' // Add padding to account for fixed button
         }}
       >
-        {/* Header */}
-        <div className="mb-8">
-          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 relative overflow-hidden">
-            <div className="flex justify-center items-center relative">
-              <h1 className="text-3xl font-light text-white text-center">Firewall Dashboard</h1>
-            </div>
-          </div>
-        </div>
-        
         {/* Main Dashboard Content */}
         <div className="space-y-8">
           {/* Live Log Section */}
@@ -128,7 +112,6 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
                   </tr>
                 </thead>
                 <tbody className="text-gray-300">
-                  {/* Empty table for now - matches the screenshot */}
                   <tr>
                     <td colSpan={6} className="py-8 text-center text-gray-500">
                       No recent log entries
@@ -148,7 +131,6 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
                   <span className="text-gray-300 text-sm">Traffic In</span>
                 </div>
                 <div className="relative h-16 bg-gray-900/50 rounded-lg overflow-hidden">
-                  {/* Animated wave for Traffic In */}
                   <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 64" preserveAspectRatio="none">
                     <path
                       d="M0,32 Q100,16 200,32 T400,32"
@@ -165,7 +147,6 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
                   <span className="text-gray-300 text-sm">Traffic Out</span>
                 </div>
                 <div className="relative h-16 bg-gray-900/50 rounded-lg overflow-hidden">
-                  {/* Animated wave for Traffic Out */}
                   <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 64" preserveAspectRatio="none">
                     <path
                       d="M0,48 Q100,32 200,48 T400,48"

@@ -5,7 +5,7 @@ import Reports from '@/components/Reports';
 
 import { Button } from '@/components/ui/button';
 import NetworkBackground from '@/components/NetworkBackground';
-import Dashboard from '@/components/Dashboard';
+import Dashboard from '@/components/Dashboard1';
 import ChatBot from '@/components/ChatBot';
 import AboutUs from '@/components/AboutUs';
 

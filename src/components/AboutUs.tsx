@@ -93,8 +93,9 @@ const AboutUs: React.FC<AboutUsProps> = ({ isSidebarHovered }) => {
     }`}>
 
       {/* Team Section Title */}
-      <h1 className="text-xl font-SF Pro Rounded text-white mb-8 text-center">Final Project Team</h1>
-
+      <h1 className="text-3xl font-light text-white text-center mb-8">
+        Project Team
+      </h1>
       {/* Row 1: Single card centered */}
       <div className="flex justify-center mb-8">
         <div className="w-full max-w-sm">
