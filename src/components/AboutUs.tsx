@@ -30,7 +30,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ isSidebarHovered }) => {
       email: 'basharalabdallat2377@gmail.com',
       phone: '+962790851749',
       linkedin: 'https://www.linkedin.com/in/bashar-alabdallat-a8157b256/',
-      image: 'src/assets/Bashar.jpg',
+      image: 'src/assets/1.jfif',
       initials: 'BA',
       gradientColors: 'bg-gradient-to-br from-green-500 to-blue-600'
     },
