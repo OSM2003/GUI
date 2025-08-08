@@ -8,8 +8,35 @@ interface ReportsProps {
 const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
   const [selectedSection, setSelectedSection] = useState<'powerpoint' | 'documentation' | null>(null);
 
-  // Add state to show the pptx in an iframe
+  // Add state to show the pptx and pdf in iframes
   const [showPptx, setShowPptx] = useState(false);
+  const [showPdf, setShowPdf] = useState(false);
+
+  const handlePowerpointClick = () => {
+    if (selectedSection === 'powerpoint' && showPptx) {
+      // If already selected and showing, collapse it
+      setShowPptx(false);
+      setSelectedSection(null);
+    } else {
+      // Show powerpoint and hide documentation
+      setSelectedSection('powerpoint');
+      setShowPptx(true);
+      setShowPdf(false);
+    }
+  };
+
+  const handleDocumentationClick = () => {
+    if (selectedSection === 'documentation' && showPdf) {
+      // If already selected and showing, collapse it
+      setShowPdf(false);
+      setSelectedSection(null);
+    } else {
+      // Show documentation and hide powerpoint
+      setSelectedSection('documentation');
+      setShowPdf(true);
+      setShowPptx(false);
+    }
+  };
 
   return (
     <main
@@ -29,15 +56,10 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
           className={`bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 flex flex-col transition-all duration-500 ease-out cursor-pointer hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20 animate-slide-in-up ${
             selectedSection === 'powerpoint' ? 'ring-2 ring-orange-500/50' : ''
           }`}
-          onClick={() => {
-            setSelectedSection('powerpoint');
-            setShowPptx(true);
-          }}
+          onClick={handlePowerpointClick}
           style={{ animationDelay: '0.1s' }}
         >
           <div className="flex items-center justify-center mb-6"></div>
-          <div className="flex items-center justify-center mb-6"></div>
-
           {/* PowerPoint Icon */}
           <div className="flex items-center justify-center mb-6">
             <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
@@ -48,20 +70,9 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
           </div>
 
           <h2 className="text-2xl font-bold mb-4 text-white text-center">PowerPoint Presentation</h2>
-
-          {selectedSection === 'powerpoint' && showPptx && (
-            <div className="w-full h-[500px] mt-4 rounded-xl overflow-hidden bg-black">
-             <iframe
-  title="pptx"
-  src="https://view.officeapps.live.com/op/embed.aspx?src=https://OSM2003.github.com/GUI/src/assets/Create%20and%20Connect%20Private%20and%20Public%20Networks%20on.pptx"
-  width="100%"
-  height="600px"
-  frameBorder="0"
-  allowFullScreen
-></iframe>
-
-            </div>
-          )}
+          <p className="text-gray-300 text-center text-sm">
+            {showPptx ? 'Leave The Show' : 'Watch The Show'}
+          </p>
         </div>
 
         {/* Documentation Section */}
@@ -69,9 +80,10 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
           className={`bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 flex flex-col transition-all duration-500 ease-out cursor-pointer hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/20 animate-slide-in-up ${
             selectedSection === 'documentation' ? 'ring-2 ring-green-500/50' : ''
           }`}
-          onClick={() => setSelectedSection('documentation')}
+          onClick={handleDocumentationClick}
           style={{ animationDelay: '0.2s' }}
         >
+          <div className="flex items-center justify-center mb-6"></div>
           {/* Centered Documentation Icon */}
           <div className="flex justify-center items-center mb-6 w-full">
             <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg mx-auto">
@@ -85,26 +97,73 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
             </div>
           </div>
           <h2 className="text-2xl font-bold mb-4 text-white text-center">Documentation</h2>
-          {selectedSection === 'documentation' && (
-            <div className="w-full h-[500px] mt-4 rounded-xl overflow-hidden bg-black">
-              <iframe
-                title="pdf"
-                src="/src/assets/Graduation.pdf"
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                className="w-full h-full"
-              ></iframe>
-            </div>
-          )}
+          <p className="text-gray-300 text-center text-sm">
+            {showPdf ? 'Leave The Art' : 'Watch The Art'}
+          </p>
         </div>
       </section>
+
+      {/* Expanded PowerPoint Section */}
+      {showPptx && (
+        <section className="mt-8 animate-slide-in-up">
+          <div className="w-full flex justify-center">
+            <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl border border-orange-500/30" 
+                 style={{ width: '1200px', height: '675px' }}>
+              <iframe
+                title="PowerPoint Presentation"
+                src="https://view.officeapps.live.com/op/embed.aspx?src=https://raw.githubusercontent.com/OSM2003/GUI/main/src/assets/Create%20and%20Connect%20Private%20and%20Public%20Networks%20on.pptx"
+                width="1200"
+                height="675"
+                frameBorder="0"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full"
+                style={{ 
+                  filter: 'brightness(1.1) contrast(1.05)',
+                  background: 'white'
+                }}
+              ></iframe>
+              {/* Loading overlay */}
+              <div className="absolute top-4 right-4 bg-orange-500/20 backdrop-blur-sm rounded-lg px-3 py-1">
+                <span className="text-orange-300 text-sm font-medium">PowerPoint</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Expanded Documentation Section */}
+      {showPdf && (
+        <section className="mt-8 animate-slide-in-up">
+          <div className="w-full flex justify-center">
+            <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl border border-green-500/30" 
+                 style={{ width: '900px', height: '1200px' }}>
+              <iframe
+                title="Documentation PDF"
+                src="/src/assets/Graduation.pdf"
+                width="900"
+                height="1200"
+                frameBorder="0"
+                className="absolute top-0 left-0 w-full h-full"
+                style={{ 
+                  filter: 'brightness(1.1) contrast(1.05)',
+                  background: 'white'
+                }}
+              ></iframe>
+              {/* Loading overlay */}
+              <div className="absolute top-4 right-4 bg-green-500/20 backdrop-blur-sm rounded-lg px-3 py-1">
+                <span className="text-green-300 text-sm font-medium">Documentation</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Animation CSS */}
       <style jsx>{`
         @keyframes slideInUp {
           from {
             opacity: 0;
-            transform: translateY(0);
+            transform: translateY(30px);
           }
           to {
             opacity: 1;
@@ -114,6 +173,11 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
         
         .animate-slide-in-up {
           animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        /* Smooth transitions for iframe containers */
+        section {
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
       `}</style>
     </main>
