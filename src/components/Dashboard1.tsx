@@ -222,6 +222,8 @@ const Dashboard: React.FC<DashboardProps> = ({ isSidebarHovered }) => {
                       <td className="py-2 px-4">Block</td>
                     </tr>
                   ))}
+
+
                 </tbody>
               </table>
             </div>
