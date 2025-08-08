@@ -8,6 +8,9 @@ interface ReportsProps {
 const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
   const [selectedSection, setSelectedSection] = useState<'powerpoint' | 'documentation' | null>(null);
 
+  // Add state to show the pptx in an iframe
+  const [showPptx, setShowPptx] = useState(false);
+
   return (
     <main
       className={` custom-scrollbar flex-1 p-8 overflow-y-auto flex flex-col transition-all duration-300 ease-in-out ${
@@ -26,9 +29,15 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
           className={`bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 flex flex-col transition-all duration-500 ease-out cursor-pointer hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20 animate-slide-in-up ${
             selectedSection === 'powerpoint' ? 'ring-2 ring-orange-500/50' : ''
           }`}
-          onClick={() => setSelectedSection(selectedSection === 'powerpoint' ? null : 'powerpoint')}
+          onClick={() => {
+            setSelectedSection('powerpoint');
+            setShowPptx(true);
+          }}
           style={{ animationDelay: '0.1s' }}
         >
+          <div className="flex items-center justify-center mb-6"></div>
+          <div className="flex items-center justify-center mb-6"></div>
+
           {/* PowerPoint Icon */}
           <div className="flex items-center justify-center mb-6">
             <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
@@ -38,13 +47,18 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
             </div>
           </div>
 
-          <h2 className="text-2xl font-bold mb-4 text-white text-center">PowerPoint Presentations</h2>
+          <h2 className="text-2xl font-bold mb-4 text-white text-center">PowerPoint Presentation</h2>
 
-          {selectedSection === 'powerpoint' ? (
-            <div className="text-center text-gray-400">
-            </div>
-          ) : (
-            <div className="flex-1 flex items-end justify-center">
+          {selectedSection === 'powerpoint' && showPptx && (
+            <div className="w-full h-[500px] mt-4 rounded-xl overflow-hidden bg-black">
+             <iframe
+  title="pptx"
+  src="https://view.officeapps.live.com/op/embed.aspx?src=https://OSM2003.github.com/GUI/src/assets/Create%20and%20Connect%20Private%20and%20Public%20Networks%20on.pptx"
+  width="100%"
+  height="600px"
+  frameBorder="0"
+  allowFullScreen
+></iframe>
 
             </div>
           )}
@@ -55,12 +69,12 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
           className={`bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 flex flex-col transition-all duration-500 ease-out cursor-pointer hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/20 animate-slide-in-up ${
             selectedSection === 'documentation' ? 'ring-2 ring-green-500/50' : ''
           }`}
-          onClick={() => setSelectedSection(selectedSection === 'documentation' ? null : 'documentation')}
+          onClick={() => setSelectedSection('documentation')}
           style={{ animationDelay: '0.2s' }}
         >
-          {/* Documentation Icon */}
-          <div className="flex items-center justify-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+          {/* Centered Documentation Icon */}
+          <div className="flex justify-center items-center mb-6 w-full">
+            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg mx-auto">
               <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
                 <path d="M14 2v6h6"/>
@@ -70,20 +84,17 @@ const Reports: React.FC<ReportsProps> = ({ isSidebarHovered }) => {
               </svg>
             </div>
           </div>
-
           <h2 className="text-2xl font-bold mb-4 text-white text-center">Documentation</h2>
-          <p className="text-gray-300 text-center mb-6">
-         
-          </p>
-
-          {selectedSection === 'documentation' ? (
-            <div className="space-y-4 animate-slide-in-up">
-              <div className="grid grid-cols-1 gap-3">
-
-              </div>
-            </div>
-          ) : (
-            <div className="flex-1 flex items-end justify-center">
+          {selectedSection === 'documentation' && (
+            <div className="w-full h-[500px] mt-4 rounded-xl overflow-hidden bg-black">
+              <iframe
+                title="pdf"
+                src="/src/assets/Graduation.pdf"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                className="w-full h-full"
+              ></iframe>
             </div>
           )}
         </div>
