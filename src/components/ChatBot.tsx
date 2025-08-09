@@ -16,7 +16,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isSidebarHovered }) => {
 
   return (
     <div
-      className={`custom-scroll relative w-full m-10 max-w-7xl mx-auto flex gap-6 flex-1 p-8 overflow-y-auto transition-all duration-300 ease-in-out ${
+      className={`custom-scroll relative w-full m-4 mx-auto flex gap-6 flex-1 p-8 overflow-y-auto transition-all duration-300 ease-in-out ${
         isSidebarHovered ? 'blur-sm' : ''
       }`}
       style={{
